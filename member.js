@@ -30,7 +30,7 @@ function constructMember(memberdata) {
       return ageInYears;
     },
 
-    isJunior() {
+    get isJunior() {
       if (this.age >= 18) {
         return "Senior";
       } else {
@@ -41,13 +41,13 @@ function constructMember(memberdata) {
     isSenior() {
       console.log();
       if (this.age < 18) {
-        return "No";
+        return "Junior";
       } else {
-        return "Yes";
+        return "Senior";
       }
     },
 
-    isActiveMember() {
+    get isActiveMember() {
       if (this.active) {
         return `Aktiv`;
       } else {
@@ -56,7 +56,27 @@ function constructMember(memberdata) {
     },
   };
 
-  Object.defineProperty(MemberObject, 'id', { writable: false });
+  // Object.defineProperty(MemberObject, 'id', { writable: false });
+  Object.defineProperties(MemberObject, {
+    id: {
+      writable: false,
+    },
+    fullName: {
+      enumerable: false,
+    },
+    age: {
+      enumerable: false,
+    },
+    isJunior: {
+      enumerable: false,
+    },
+    isSenior: {
+      enumerable: false,
+    },
+    isActiveMember: {
+      enumerable: false,
+    }
+  });
 
   // console.log(memberdata);
   return MemberObject;

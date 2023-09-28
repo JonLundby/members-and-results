@@ -8,11 +8,13 @@ const members = [];
 const results = [];
 
 function findMemberObject(id) {
-  return members.find(checkId);
+  return members.find(member => member.id === id);
 
-  function checkId(member) {
-    return member.id === id;
-  }
+  // return members.find(checkId);
+
+  // function checkId(member) {
+  //   return member.id === id;
+  // }
 }
 
 async function initApp() {
@@ -29,8 +31,8 @@ async function initApp() {
   displayMembers(members);
   displayResults(results);
 
-  // console.log(members);
-  // console.log(results);
+  console.log(members);
+  console.log(results);
 }
 
 //fetch members
@@ -75,10 +77,10 @@ function displayMembers(members) {
     const html = /*html*/ `
     <tr>
       <td>${member.fullName}</td>
-      <td>${member.isActiveMember()}</td>
+      <td>${member.isActiveMember}</td>
       <td>${member.birthday}</td>
       <td>${member.age}</td>
-      <td>${member.isJunior()}</td>
+      <td>${member.isJunior}</td>
       <!--<td>${member.isSenior()}</td>-->
       <!--<td>${member.email}</td>-->
     </tr>`;

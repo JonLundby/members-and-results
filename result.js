@@ -65,8 +65,23 @@ function constructResult(resultData) {
 
   resultObject.time = resultData.time;
 
-  Object.defineProperty(resultObject, 'id', { writable: false });
-  Object.defineProperty(resultObject, 'memberId', { writable: false });
+  // Object.defineProperty(resultObject, 'id', { writable: false });
+  // Object.defineProperty(resultObject, 'memberId', { writable: false });
+
+  Object.defineProperties(resultObject, {
+    id: {
+      writable: false,
+    },
+    memberId: {
+      writable: false,
+    },
+    time: {
+      enumerable: false,
+    },
+    isCompeting: {
+      enumerable: false,
+    },
+  });
 
   return resultObject;
 }
