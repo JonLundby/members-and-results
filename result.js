@@ -8,6 +8,9 @@ function constructResult(resultData) {
   };
 
   const resultObject = {
+    id: resultData.id,
+    memberId: resultData.memberId,
+    member: findMemberObject(resultData.memberId),
     date: new Date(resultData.date).toLocaleString("da-DK", Options),
     memberId: resultData.memberId,
     discipline: resultData.discipline,
@@ -15,7 +18,7 @@ function constructResult(resultData) {
     _time: "00:00.00",
 
     set time(value) {
-      console.log(`set time value: ${value}`);
+      // console.log(`set time value: ${value}`);
       const milliseconds = Number(value.slice(-2));
       const seconds = Number(value.slice(3, -3));
       const minutes = Number(value.slice(0, 2));
@@ -62,7 +65,8 @@ function constructResult(resultData) {
 
   resultObject.time = resultData.time;
 
-  console.log(`millisec: ${resultObject.time}`);
+  Object.defineProperty(resultObject, 'id', { writable: false });
+  Object.defineProperty(resultObject, 'memberId', { writable: false });
 
   return resultObject;
 }

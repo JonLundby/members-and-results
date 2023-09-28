@@ -8,7 +8,7 @@ const members = [];
 const results = [];
 
 function findMemberObject(id) {
-  members.find(checkId);
+  return members.find(checkId);
 
   function checkId(member) {
     return member.id === id;
@@ -29,8 +29,8 @@ async function initApp() {
   displayMembers(members);
   displayResults(results);
 
-  console.log(members);
-  console.log(results);
+  // console.log(members);
+  // console.log(results);
 }
 
 //fetch members
@@ -74,7 +74,7 @@ function displayMembers(members) {
     // console.log(member);
     const html = /*html*/ `
     <tr>
-      <td>${member.name}</td>
+      <td>${member.fullName}</td>
       <td>${member.isActiveMember()}</td>
       <td>${member.birthday}</td>
       <td>${member.age}</td>
@@ -120,7 +120,7 @@ function displayResults(results) {
     const htmlResult = /*html*/ `
             <tr>
                 <td>${resultObject.date}</td>
-                <td>${resultObject.memberId}</td>
+                <td>${resultObject.member?.fullName}</td>
                 <td>${disciplineToDanish()}</td>
                 <td>${competition()}</td>
                 <td>${resultObject.time}</td>

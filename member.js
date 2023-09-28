@@ -6,6 +6,7 @@ function constructMember(memberdata) {
   };
 
   const MemberObject = {
+    id: memberdata.id,
     name: memberdata.firstName,
     active: memberdata.isActiveMember,
     competitive: memberdata.isCompetitive,
@@ -14,6 +15,12 @@ function constructMember(memberdata) {
     gender: memberdata.gender,
     image: memberdata.image,
     hasPayed: memberdata.hasPayed,
+
+    get fullName() {
+      const fullName = `${this.name} ${memberdata.lastName}`
+
+      return fullName;
+    },
 
     get age() {
       const birthdateInMillisec = new Date(memberdata.dateOfBirth).getTime();
@@ -38,16 +45,18 @@ function constructMember(memberdata) {
       } else {
         return "Yes";
       }
-      },
-    
-      isActiveMember() {
-        if (this.active) {
-            return `Aktiv`
-        } else {
-            return `Zzz`
-        }
-    }
+    },
+
+    isActiveMember() {
+      if (this.active) {
+        return `Aktiv`;
+      } else {
+        return `Zzz`;
+      }
+    },
   };
+
+  Object.defineProperty(MemberObject, 'id', { writable: false });
 
   // console.log(memberdata);
   return MemberObject;
